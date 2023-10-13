@@ -1,0 +1,21 @@
+.global-component {
+  background-color: lightblue;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid blue;
+}
+.component-a {
+  background-color: lightcoral;
+  padding: 10px;
+  margin: 10px;
+}
+.component-b {
+  background-color: lightgreen;
+  padding: 10px;
+  margin: 10px;
+}
+.component-c {
+  background-color: lightblue;
+  padding: 10px;
+  margin: 10px;
+}
