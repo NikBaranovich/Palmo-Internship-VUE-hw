@@ -1,8 +1,8 @@
 <template>
   <div>
-    <translate-form></translate-form>
+    <translate-form />
 
-    <global-component></global-component>
+    <global-component />
 
     <label for="components">Choose a component to display:</label>
 
@@ -15,15 +15,14 @@
     </select>
 
     <div v-if="selectedComponent === 'ComponentA'">
-      <my-component-a></my-component-a>
+      <my-component-a />
     </div>
     <div v-if="selectedComponent === 'ComponentB'">
-      <my-component-b></my-component-b>
+      <my-component-b />
     </div>
     <div v-if="selectedComponent === 'ComponentC'">
-      <my-component-c></my-component-c>
+      <my-component-c />
     </div>
-    
   </div>
 </template>
 
@@ -34,6 +33,11 @@ import MyComponentB from "../components/MyComponentB.vue";
 import MyComponentC from "../components/MyComponentC.vue";
 
 export default {
+  data() {
+    return {
+      selectedComponent: "ComponentA",
+    };
+  },
   /**
    * Local component
    */
@@ -43,13 +47,5 @@ export default {
     MyComponentB,
     MyComponentC,
   },
-
-  data() {
-    return {
-      selectedComponent: "ComponentA",
-    };
-  },
 };
 </script>
-
-<style></style>

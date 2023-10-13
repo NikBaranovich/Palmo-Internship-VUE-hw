@@ -13,7 +13,6 @@
 <script>
 
 export default {
-  
     data() {
     return {
       isDisabled: false,
@@ -21,13 +20,10 @@ export default {
   },
   
   computed: {
-
     disableButtonText() {
       return this.isDisabled ? "Enable input" : "Disable input";
     },
   },
-
 };
 </script>
 
-<style></style>
