@@ -1,18 +1,25 @@
 <template>
+
   <div>
+
     <p>Display people older than {{ filterAge }}:</p>
     <input v-model.trim="filterAge" @input="validateAge" />
     <button @click="filterPeople">Filter</button>
+    
     <person-item
-      v-for="person in filteredPeople"
+      v-for="person in filteredPeopleComputed"
       :person="person"
       :key="person.id"
       class="person-card"
     ></person-item>
+
   </div>
+
 </template>
+
 <script>
 import PersonItem from "./PersonItem.vue";
+
 export default {
   components: {
     PersonItem,
@@ -26,7 +33,7 @@ export default {
   data() {
     return {
       filterAge: null,
-      // filteredPeople: this.people,
+      filteredPeople: this.people,
     };
   },
   methods: {
@@ -47,28 +54,11 @@ export default {
    * Lesson 2 Task 8: Create a computed property to filter the list of objects.
    */
   computed: {
-    filteredPeople() {
+    filteredPeopleComputed() {
       return this.people.filter((person) => person.age > this.filterAge);
     },
   },
 };
 </script>
-<style scoped>
-.person-card {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  background-color: #f5f5f5;
-  box-shadow: 2px 2px 5px #888888;
-}
-
-h2 {
-  font-size: 20px;
-  margin-bottom: 5px;
-}
-
-p {
-  font-size: 16px;
-}
+<style>
 </style>
