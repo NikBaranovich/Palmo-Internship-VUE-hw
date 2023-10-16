@@ -10,7 +10,11 @@
 
     <table>
       <tr v-for="row in tableData" :key="row.id">
-        <td v-for="cell in row.cells" :key="cell.id">{{ cell.text }}</td>
+        <td 
+        v-for="cell in row.cells" 
+        :key="cell.id">
+        {{ cell.text }}
+      </td>
       </tr>
     </table>
   </div>
@@ -27,7 +31,7 @@ export default {
   methods: {
     generateTable() {
       this.tableData = [];
-      
+
       for (let i = 0; i < this.rowCount; i++) {
         const row = { id: i, cells: [] };
 

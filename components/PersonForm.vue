@@ -5,19 +5,31 @@
     <form @submit.prevent="submitForm">
       <div>
         <label for="name">Name:</label>
-        <input type="text" id="name" v-model="formData.name" />
+        <input 
+        type="text" 
+        id="name" 
+        v-model="formData.name" 
+        />
         <p class="alert">{{ errorText.name }}</p>
       </div>
 
       <div>
         <label for="age">Age:</label>
-        <input type="number" id="age" v-model="formData.age" />
+        <input 
+        type="number" 
+        id="age" 
+        v-model="formData.age" 
+        />
         <p class="alert">{{ errorText.age }}</p>
       </div>
 
       <div>
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="formData.email" />
+        <input 
+        type="email" 
+        id="email" 
+        v-model="formData.email" 
+        />
         <p class="alert">{{ errorText.email }}</p>
       </div>
 
@@ -45,34 +57,14 @@ export default {
   },
   methods: {
     submitForm() {
-      if (!this.isValidName(this.formData.name)) {
-        this.errorText.name = "Please enter the correct name.";
-        return;
-      } else {
-        this.errorText.name = "";
+      if (this.dataIsValid()) {
+        const dataToSubmit = {
+          name: this.formData.name,
+          age: this.formData.age,
+          email: this.formData.email,
+        };
+        console.log("Data sent:", dataToSubmit);
       }
-
-      if (!this.isValidAge(this.formData.age)) {
-        this.errorText.age = "Please enter the correct age.";
-        return;
-      } else {
-        this.errorText.age = "";
-      }
-
-      if (!this.isValidEmail(this.formData.email)) {
-        this.errorText.email = "Please enter the correct email.";
-        return;
-      } else {
-        this.errorText.email = "";
-      }
-
-      const dataToSubmit = {
-        name: this.formData.name,
-        age: this.formData.age,
-        email: this.formData.email,
-      };
-      
-      console.log("Data sent:", dataToSubmit);
     },
     isValidName(name) {
       return name.length >= 2;
@@ -83,6 +75,29 @@ export default {
     isValidEmail(email) {
       const emailRegex = /\S+@\S+\.\S+/;
       return emailRegex.test(email);
+    },
+    іsValidData() {
+      if (!this.isValidName(this.formData.name)) {
+        this.errorText.name = "Please enter the correct name.";
+        return false;
+      } else {
+        this.errorText.name = "";
+      }
+
+      if (!this.isValidAge(this.formData.age)) {
+        this.errorText.age = "Please enter the correct age.";
+        return false;
+      } else {
+        this.errorText.age = "";
+      }
+
+      if (!this.isValidEmail(this.formData.email)) {
+        this.errorText.email = "Please enter the correct email.";
+        return false;
+      } else {
+        this.errorText.email = "";
+      }
+      return true;
     },
   },
 };
