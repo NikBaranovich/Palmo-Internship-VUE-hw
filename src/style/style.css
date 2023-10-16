@@ -1,21 +1,86 @@
-.global-component {
-  background-color: lightblue;
-  padding: 10px;
-  margin: 10px;
-  border: 1px solid blue;
+.light-theme {
+  --color-primary: #ffffff;
+  --color-secondary: #3f97d9;
+  --color-accent: #4c4ce8;
+  --color-text: #000000;
+  --color-border: #6495ed;
 }
-.component-a {
-  background-color: lightcoral;
-  padding: 10px;
-  margin: 10px;
+.dark-theme {
+  --color-primary: #232D3F;
+  --color-secondary: #d9d13f;
+  --color-accent: #92e84c;
+  --color-text: #ffffff;
+  --color-border: #edb464;
 }
-.component-b {
-  background-color: lightgreen;
-  padding: 10px;
-  margin: 10px;
+.timestamp-list {
+  list-style: none;
+  padding: 0;
 }
-.component-c {
-  background-color: lightblue;
-  padding: 10px;
-  margin: 10px;
+html{
+  background-color: var(--color-primary);
+  color: var(--color-text);
 }
+.timestamp-item {
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.timestamp-button {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.timestamp-button:hover {
+  background-color: var(--color-accent);
+}
+.alert {
+  color: red;
+}
+.animated-element {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+  color: white;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid var(--color-border);
+}
+
+th {
+  background-color: var(--color-secondary);
+}
+
+tr:nth-child(even) {
+  background-color: var(--color-secondary);
+}
+
+tr:nth-child(odd) {
+  background-color: var(--color-accent);
+}
+
