@@ -127,11 +127,13 @@ export default {
   },
   methods: {
     validateName() {
+      const minLength = 3;
+      const maxLength = 30;
       if (!this.form.name) {
         this.errors.name = "Name field is required";
         return false;
       }
-      if (this.form.name.length < 3 || this.form.name.length > 30) {
+      if (this.form.name.length <= minLength || this.form.name.length >= maxLength) {
         this.errors.name = "Name must be at least 3 characters and no more than 30 characters";
         return false;
       }

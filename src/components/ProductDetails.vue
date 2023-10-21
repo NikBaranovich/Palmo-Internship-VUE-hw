@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     isFetched() {
-      return Array.isArray(this.products) && this.products.length > 0;
+      return Array.isArray(this.products) && this.products.length;
     },
   },
   watch: {

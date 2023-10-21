@@ -1,11 +1,11 @@
 
 <template>
   <input 
-  :value="modelValue" 
-  @input="updateInput" 
-  class="input-field"
-   type="text" 
-   />
+    :value="modelValue" 
+    @input="updateInput" 
+    class="input-field"
+    type="text" 
+  />
 </template>
 <script>
 export default {
