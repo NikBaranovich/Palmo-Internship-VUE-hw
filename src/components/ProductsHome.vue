@@ -1,25 +1,8 @@
 <template>
   <div class="component">
-    <router-view :products="products" />
+    <router-view />
   </div>
 </template>
 <script>
-import axiosInstanse from "@/services/axios.js";
-export default {
-  data() {
-    return {
-      products: null,
-    };
-  },
-  mounted() {
-    axiosInstanse
-      .get(`/products`)
-      .then((response) => {
-        this.products = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
-};
+export default {};
 </script>
