@@ -12,12 +12,12 @@
         <p class="product-details-price">$ {{ (+product.price).toFixed(2) }}</p>
 
         <div class="product-details-rating">
-          <span class="product-details-rating-count"
-            >{{ product.count }} reviews</span
-          >
-          <span class="product-details-rating-rate"
-            >Rating: {{ product.rating }}</span
-          >
+          <span class="product-details-rating-count">
+            {{ product.count }} reviews
+          </span>
+          <span class="product-details-rating-rate">
+            Rating: {{ product.rating }}
+          </span>
         </div>
       </div>
       <button @click="openEditModal">Edit product</button>
@@ -55,7 +55,7 @@ export default {
   methods: {
     ...mapActions(useProductStore, ["getPaginatedProducts"]),
     ...mapActions(useCartStore, ["addToCart"]),
-    
+
     openEditModal() {
       this.showEditModal = true;
       this.editedProduct.title = this.product.title;

@@ -21,7 +21,7 @@ export default {
   methods: {
     viewProductDetails(id) {
       this.$router.push({
-        name: "productItem",
+        name: "products.singleProduct",
         params: {id},
       });
     },

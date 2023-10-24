@@ -4,12 +4,12 @@
       <h3>Edit product</h3>
       <form @submit.prevent="editProduct">
         <input 
-        v-model="product.title" 
-        placeholder="Product name" 
+          v-model="product.title" 
+          placeholder="Product name" 
         />
         <input 
-        v-model="product.price" 
-        placeholder="Price" 
+          v-model="product.price" 
+          placeholder="Price" 
         />
         <textarea
           v-model="product.description"

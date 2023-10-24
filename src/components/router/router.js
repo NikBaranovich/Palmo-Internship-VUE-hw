@@ -1,4 +1,3 @@
-// Lesson 5 Task 1: Set up base routes for multiple components in your app.
 import {createRouter, createWebHistory} from "vue-router";
 import {useAuthorizationStore} from "@/store/authorization.js";
 
@@ -36,12 +35,12 @@ const routes = [
     children: [
       {
         path: "/products/",
-        name: "productsMain",
+        name: "products.index",
         component: Products,
         props: true,
       },
       {
-        name: "productItem",
+        name: "products.singleProduct",
         path: "/products/:id",
         component: ProductDetails,
         props: (route) => ({
