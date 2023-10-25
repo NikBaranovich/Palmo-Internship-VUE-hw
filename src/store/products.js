@@ -3,34 +3,26 @@
  */
 import {defineStore} from "pinia";
 import axiosInstanse from "@/services/axios.js";
+import {debounseMixin} from "@/mixins/debounce";
 
-/**
- * Lesson 6 Task 2: Create your first store with a basic state and a few actions or mutations.
- */
 export const useProductStore = defineStore("products", {
   state: () => ({
     productsState: [],
-    productsLimitState: 10,
+    productsLimitState: 9,
     currentPageState: 1,
   }),
   getters: {
     products: (state) => state.productsState,
-    /**
-     * Lesson 6 Task 7: Create selectors to derive derived data based on state.
-     */
     totalProductsCount() {
       return 100;
     },
     productsLimit: (state) => state.productsLimitState,
     currentPage: (state) => state.currentPageState,
     totalPages() {
-      return this.totalProductsCount / this.productsLimitState;
+      return Math.ceil(this.totalProductsCount / this.productsLimitState);
     },
   },
   actions: {
-    /**
-     * Lesson 6 Task 4: Create mutations to change the state in your store.
-     */
     setProduct(id, parameters) {
       const product = this.productsState.find((product) => +product.id === +id);
       if (product) {
@@ -44,10 +36,6 @@ export const useProductStore = defineStore("products", {
     setProducts(products) {
       this.productsState = [...products];
     },
-    /**
-     * Lesson 6 Task 5: Create actions to call mutations and handle asynchronous operations.
-     * Lesson 6 Task 8: Create asynchronous actions that interact with APIs or other asynchronous data sources.
-     */
     getProducts() {
       axiosInstanse
         .get(`/products`)
@@ -58,9 +46,6 @@ export const useProductStore = defineStore("products", {
           console.log(error);
         });
     },
-    /**
-     * Lesson 6 Task 10: Implement pagination from a third-party API using the Pinia store.
-     */
     getPaginatedProducts(page, limit) {
       axiosInstanse
         .get(`/products?page=${page}&limit=${limit}`)
@@ -74,13 +59,17 @@ export const useProductStore = defineStore("products", {
     previousPage() {
       if (this.currentPage > 1) {
         this.currentPageState--;
-        this.getPaginatedProducts(this.currentPage, this.productsLimit);
+        debounseMixin.methods.debounce(() => {
+          this.getPaginatedProducts(this.currentPage, this.productsLimit);
+        });
       }
     },
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPageState++;
-        this.getPaginatedProducts(this.currentPage, this.productsLimit);
+        debounseMixin.methods.debounce(() => {
+          this.getPaginatedProducts(this.currentPage, this.productsLimit);
+        });
       }
     },
   },

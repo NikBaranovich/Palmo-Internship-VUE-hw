@@ -23,12 +23,26 @@
       <button @click="openEditModal">Edit product</button>
       <button @click="addToCart(id)">Add to cart</button>
     </div>
-    <edit-product-modal
+    <modal
+      v-if="showEditModal"
       :showEditModal="showEditModal"
-      :editedProduct="editedProduct"
-      :id="+id"
       @closeModal="closeEditModal"
-    />
+    >
+      <template v-slot:header>
+        <h3>Edit product</h3>
+      </template>
+      <template v-slot:body>
+        <div>
+          <input v-model="editedProduct.title" placeholder="Product name" />
+          <input v-model="editedProduct.price" placeholder="Price" />
+          <textarea v-model="editedProduct.description" placeholder="Description" />
+        </div>
+      </template>
+      <template v-slot:footer>
+        <button @click="editProduct">Save</button>
+        <button @click="closeEditModal">Cancel</button>
+      </template>
+    </modal>
   </div>
   <div v-else>
     <p>Loading...Please, wait</p>
@@ -39,7 +53,7 @@
 import {useProductStore} from "@/store/products.js";
 import {useCartStore} from "@/store/cart.js";
 import {mapActions, mapState} from "pinia";
-import EditProductModal from "@/components/EditProductModal.vue";
+import Modal from "@/components/Modal.vue";
 
 export default {
   data() {
@@ -50,12 +64,11 @@ export default {
     };
   },
   components: {
-    EditProductModal,
+    Modal,
   },
   methods: {
-    ...mapActions(useProductStore, ["getPaginatedProducts"]),
+    ...mapActions(useProductStore, ["getPaginatedProducts", "setProduct"]),
     ...mapActions(useCartStore, ["addToCart"]),
-    
     openEditModal() {
       this.showEditModal = true;
       this.editedProduct.title = this.product.title;
@@ -65,14 +78,18 @@ export default {
     closeEditModal() {
       this.showEditModal = false;
     },
+    editProduct() {
+      this.setProduct(+this.id, {
+        title: this.editedProduct.title,
+        price: +this.editedProduct.price,
+        description: this.editedProduct.description,
+      });
+
+      this.showEditModal = false;
+    },
   },
   computed: {
-    /**
-     * Lesson 6 Task 3: Output data from your store in a Vue component.
-     */
-    ...mapState(useProductStore, ["products"]),
-    ...mapState(useProductStore, ["productsLimit"]),
-    ...mapState(useProductStore, ["currentPage"]),
+    ...mapState(useProductStore, ["products", "productsLimit", "currentPage"]),
     product() {
       const id = +this.$route.params.id;
       return this.products.find((product) => +product.id === +id);

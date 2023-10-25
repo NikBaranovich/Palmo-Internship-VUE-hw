@@ -1,39 +1,39 @@
 <template>
   <div class="navigation">
     <router-link 
-    :to="{name: 'home'}" 
-    class="nav-link"
+      :to="{name: 'home'}" 
+      class="nav-link"
     > 
       Home 
     </router-link>
     <router-link 
-    :to="{name: 'productsMain'}" 
-    class="nav-link"
+      :to="{name: 'productsMain'}" 
+      class="nav-link"
     >
       Products
     </router-link>
     <router-link 
-    :to="{name: 'about'}" 
-    class="nav-link"
+      :to="{name: 'about'}" 
+      class="nav-link"
     > 
       About 
     </router-link>
     <router-link 
-    :to="{name: 'contact'}" 
-    class="nav-link"
+      :to="{name: 'contact'}" 
+      class="nav-link"
     >
       Contacts
     </router-link>
 
     <router-link 
-    :to="{name: 'admin'}" 
-    class="nav-link"
+      :to="{name: 'admin'}" 
+      class="nav-link"
     > 
       Admin
     </router-link>
     <router-link 
-    :to="{name: 'user'}" 
-    class="nav-link"
+      :to="{name: 'user'}" 
+      class="nav-link"
     > 
       User 
     </router-link>
@@ -61,8 +61,7 @@ export default {
     ...mapState(useAuthorizationStore, ["userRole"]),
   },
   methods: {
-    ...mapActions(useAuthorizationStore, ["login"]),
-    ...mapActions(useAuthorizationStore, ["logout"]),
+    ...mapActions(useAuthorizationStore, ["login", "logout"]),
   },
 };
 </script>
