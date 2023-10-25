@@ -3,17 +3,13 @@
     <h2 class="page-title">Products</h2>
     <p>Total products: {{ totalProductsCount }}</p>
     <div class="product-list">
-      <product 
-        v-for="product in products" 
-        :key="product.id" 
-        :id="product.id"
-        >
+      <product v-for="product in products" :key="product.id" :id="product.id">
         <template v-slot:image>
           <img 
-            v-if="product.image" 
+            v-if="hasImage" 
             :src="product.image" 
             :alt="product.name" 
-            />
+          />
         </template>
 
         <template v-slot:details>
@@ -58,6 +54,9 @@ export default {
       "currentPage",
       "totalPages",
     ]),
+    hasImage() {
+      return this.product.image;
+    },
   },
   mounted() {
     if (!this.products.length) {

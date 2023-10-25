@@ -33,9 +33,9 @@
       </template>
       <template v-slot:body>
         <div>
-          <input v-model="editedProduct.title" placeholder="Product name" />
-          <input v-model="editedProduct.price" placeholder="Price" />
-          <textarea v-model="editedProduct.description" placeholder="Description" />
+          <input v-model="product.title" placeholder="Product name" />
+          <input v-model="product.price" placeholder="Price" />
+          <textarea v-model="product.description" placeholder="Description" />
         </div>
       </template>
       <template v-slot:footer>
@@ -60,7 +60,7 @@ export default {
     return {
       id: +this.$route.params.id,
       showEditModal: false,
-      editedProduct: {},
+      product: {},
     };
   },
   components: {
@@ -71,18 +71,18 @@ export default {
     ...mapActions(useCartStore, ["addToCart"]),
     openEditModal() {
       this.showEditModal = true;
-      this.editedProduct.title = this.product.title;
-      this.editedProduct.price = this.product.price;
-      this.editedProduct.description = this.product.description;
+      this.product.title = this.product.title;
+      this.product.price = this.product.price;
+      this.product.description = this.product.description;
     },
     closeEditModal() {
       this.showEditModal = false;
     },
     editProduct() {
       this.setProduct(+this.id, {
-        title: this.editedProduct.title,
-        price: +this.editedProduct.price,
-        description: this.editedProduct.description,
+        title: this.product.title,
+        price: +this.product.price,
+        description: this.product.description,
       });
 
       this.showEditModal = false;

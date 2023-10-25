@@ -13,16 +13,17 @@ export const formValidationMixin = {
       return null;
     },
     isPhoneInvalid(phone) {
+      const phoneLength = 14;
       if (!phone) {
         return "Phone field is required";
       }
-      if (phone.length > 14) {
+      if (phone.length > phoneLength) {
         return "Phone number is too long";
       }
       if (phone[0] != "(" || phone[4] != ")" || phone[9] != "-") {
         return "Incorrect phone number format";
       }
-      if (phone.length < 14) {
+      if (phone.length < phoneLength) {
         return "Phone number is too short";
       }
       return null;
@@ -55,11 +56,12 @@ export const formValidationMixin = {
       return null;
     },
     isAgeInvalid(age) {
+      const maxAge = 100;
       if (!age) {
         return "Age field is required";
       }
 
-      if (this.form.age > 100 || this.form.age < 0) {
+      if (this.form.age > maxAge || this.form.age < 0) {
         return "Incorrect age";
       }
 
